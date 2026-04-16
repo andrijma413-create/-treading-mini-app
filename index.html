@@ -3,131 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Mini App</title>
+    <title>Trading Signals</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body {
-            background-color: #171f2c;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 10px;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-        .asset-list {
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .asset-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #2d3748;
-            cursor: pointer;
+        body { background-color: #171f2c; color: white; font-family: sans-serif; margin: 0; padding: 15px; }
+        .header { display: flex; justify-content: space-between; padding: 10px; color: #94a3b8; font-size: 14px; }
+        .asset-list { background: #1e293b; border-radius: 12px; }
+        .asset-item { 
+            display: flex; align-items: center; padding: 15px; 
+            border-bottom: 1px solid #2d3748; cursor: pointer; 
         }
         .asset-item:active { background: #334155; }
-        .icon-pair {
-            display: flex;
-            margin-right: 15px;
-        }
-        .flag {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 2px solid #1e293b;
-        }
-        .flag-2 { margin-left: -10px; }
+        .icon-pair { display: flex; margin-right: 12px; }
+        .flag { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #1e293b; }
+        .flag-2 { margin-left: -8px; }
         .asset-info { flex-grow: 1; }
-        .asset-name { font-weight: bold; font-size: 16px; }
-        .asset-type { font-size: 12px; color: #94a3b8; }
-        .profit {
-            color: #10b981;
-            font-weight: bold;
-            font-size: 16px;
-        }
+        .profit { color: #10b981; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <span>Валюти</span>
-        <span>Прибуток ↓</span>
-    </div>
-
-    <div class="asset-list">
-        <div class="asset-item">
-            <div class="icon-pair">
-                <img class="flag" src="https://flagcdn.com/w40/au.png">
-                <img class="flag flag-2" src="https://flagcdn.com/w40/ch.png">
-            </div>
-            <div class="asset-info">
-                <div class="asset-name">AUD/CHF</div>
-                <div class="asset-type">OTC</div>
-            </div>
-            <div class="profit">+92%</div>
-        </div>
-
-        <div class="asset-item">
+    <div class="header"><span>Актив</span><span>Прибуток</span></div>
+    <div class="asset-list" id="list">
+        <div class="asset-item" onclick="selectPair('EUR/USD')">
             <div class="icon-pair">
                 <img class="flag" src="https://flagcdn.com/w40/eu.png">
                 <img class="flag flag-2" src="https://flagcdn.com/w40/us.png">
             </div>
-            <div class="asset-info">
-                <div class="asset-name">EUR/USD</div>
-                <div class="asset-type">OTC</div>
-            </div>
+            <div class="asset-info"><b>EUR/USD</b><br><small>OTC</small></div>
             <div class="profit">+92%</div>
         </div>
 
-        <div class="asset-item">
+        <div class="asset-item" onclick="selectPair('GBP/JPY')">
             <div class="icon-pair">
                 <img class="flag" src="https://flagcdn.com/w40/gb.png">
                 <img class="flag flag-2" src="https://flagcdn.com/w40/jp.png">
             </div>
-            <div class="asset-info">
-                <div class="asset-name">GBP/JPY</div>
-                <div class="asset-type">OTC</div>
-            </div>
-            <div class="profit">+87%</div>
+            <div class="asset-info"><b>GBP/JPY</b><br><small>OTC</small></div>
+            <div class="profit">+89%</div>
         </div>
     </div>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        tg.MainButton.setText("ПОВЕРНУТИСЬ");
-        tg.MainButton.show();
-    </script>
-</body>
-</html>
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <h2>BTC/USD</h2>
-        <div class="price">$64,231.50</div>
-        <p>Аналіз: Ринковий тренд висхідний</p>
-        <button onclick="tgClose()">Закрити додаток</button>
-    </div>
 
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand(); // Розгорнути на весь екран
-
-        function tgClose() {
-            tg.close();
+        function selectPair(pair) {
+            // Ця функція відправляє назву пари в бот і закриває вікно
+            tg.sendData(pair);
         }
     </script>
 </body>
 </html>
+
