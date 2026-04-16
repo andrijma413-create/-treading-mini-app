@@ -1,4 +1,0 @@
-aiogram
-yfinance
-pandas_ta
-pandas
